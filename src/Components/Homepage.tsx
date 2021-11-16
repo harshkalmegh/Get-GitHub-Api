@@ -1,5 +1,10 @@
 import { ReactChild, ReactFragment, ReactPortal, useState } from "react";
+import axios from "axios"
 import "./Homepage.css";
+import { GetRequest } from "../Utilities/Network";
+import ProfileCard from "./ProfileCard";
+import RepoCard from "./RepoCard";
+
 
 const Homepage = () => {
   const [name, setName] = useState("");
@@ -11,17 +16,20 @@ const Homepage = () => {
     setName(value);
   };
 
-  const _handleCallApi = (e: any) => {
-    fetch(`https://api.github.com/users/${name}`)
-      .then((response) => response.json())
-      .then((data) => setProfile(data));
-  };
 
-  const _handleCallRepoApi = (e: any) => {
-    fetch(`${profile.repos_url}`)
-      .then((response) => response.json())
-      .then((data) => setRepo(data));
-  };
+  const _handleSearchDetail = async() => {
+    const profileResponse = await GetRequest(`https://api.github.com/users/${name}`)
+    if (!profileResponse) {
+    return
+  }
+    setProfile(profileResponse)
+
+    const repoResponse = await GetRequest(profileResponse.repos_url) 
+    if (!repoResponse) {
+    return
+  }
+    setRepo(repoResponse)
+  }
 
   return (
     <>
@@ -35,57 +43,15 @@ const Homepage = () => {
         <button
           className="btn"
           type="submit"
-          onClick={() => {
-            _handleCallApi(e);
-            _handleCallRepoApi(e);
-          }}
+          onClick={_handleSearchDetail}
         >
           Search
         </button>
       </div>
       <div className="main-container">
-        <div className="container1">
-          
-          <img
-            src={profile.avatar_url}
-            style={{ border: "1px solid" }}
-            width="150px"
-            alt=""
-          />
-          <div className="details">Name : {profile.name}</div>
-          <div className="details">Login : {profile.login}</div>
-          <div className="details">Id : {profile.id}</div>
-          <div className="details">
-            Profile Url :{" "}
-            <a href={profile.html_url} target="_blank">
-              Click Here
-            </a>
-          </div>
-        </div>
-        <div className="container2">
-          <h1>Repositories</h1>
-          {repo.map(
-            (ele: {
-              html_url: string | undefined;
-              name:
-                | boolean
-                | ReactChild
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
-            }) => {
-              return (
-                <div>
-                  •&nbsp;
-                  <a href={ele.html_url} target="_blank">
-                    {ele.name}
-                  </a>
-                </div>
-              );
-            }
-          )}
-        </div>
+        <ProfileCard data={profile} />
+        <RepoCard data={repo}/>
+        
       </div>
     </>
   );
