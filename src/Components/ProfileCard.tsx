@@ -1,6 +1,11 @@
 import React from "react";
 
 function ProfileCard(props: any) {
+  // console.log(props)
+  if (!props.data.id) {
+    return null
+  }
+  
   return (
     <div className="container1">
       <img

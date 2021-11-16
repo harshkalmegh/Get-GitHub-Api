@@ -4,12 +4,14 @@ import "./Homepage.css";
 import { GetRequest } from "../Utilities/Network";
 import ProfileCard from "./ProfileCard";
 import RepoCard from "./RepoCard";
+import React from "react";
 
 
 const Homepage = () => {
   const [name, setName] = useState("");
   const [profile, setProfile] = useState<any>({});
   const [repo, setRepo] = useState<any>([]);
+  const [showResults, setShowResults] = React.useState(false)
 
   const _handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -49,8 +51,9 @@ const Homepage = () => {
         </button>
       </div>
       <div className="main-container">
-        <ProfileCard data={profile} />
-        <RepoCard data={repo}/>
+      <ProfileCard data={profile} />
+      <RepoCard data={repo}/>
+        
         
       </div>
     </>

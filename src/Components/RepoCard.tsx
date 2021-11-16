@@ -1,6 +1,9 @@
 import React from "react";
 
 function RepoCard(props: any) {
+    if (!props.data[0]) {
+        return null
+      }
   return (
     <div className="container2">
       <h1>Repositories</h1>
