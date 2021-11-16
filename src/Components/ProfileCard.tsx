@@ -18,7 +18,7 @@ function ProfileCard(props: any) {
       <div className="details">Login : {props.data.login}</div>
       <div className="details">Id : {props.data.id}</div>
       <div className="details">
-        props.data Url :{" "}
+        Profile Url :{" "}
         <a href={props.data.html_url} target="_blank">
           Click Here
         </a>

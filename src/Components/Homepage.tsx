@@ -11,13 +11,11 @@ const Homepage = () => {
   const [name, setName] = useState("");
   const [profile, setProfile] = useState<any>({});
   const [repo, setRepo] = useState<any>([]);
-  const [showResults, setShowResults] = React.useState(false)
 
   const _handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setName(value);
   };
-
 
   const _handleSearchDetail = async() => {
     const profileResponse = await GetRequest(`https://api.github.com/users/${name}`)
@@ -53,8 +51,6 @@ const Homepage = () => {
       <div className="main-container">
       <ProfileCard data={profile} />
       <RepoCard data={repo}/>
-        
-        
       </div>
     </>
   );
