@@ -1,0 +1,40 @@
+.input-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.input-box {
+  padding: 12px;
+  margin: 12px;
+  font-size: 23px;
+  background-color: cornsilk;
+}
+
+.btn {
+  padding: 12px;
+  margin: 12px;
+  font-size: 23px;
+  background-color: cornsilk;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.container1,
+.container2 {
+  font-size: 23px;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid;
+  height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+  background-color: rgb(255, 255, 166);
+}
+
+.container1 {
+  overflow: hidden;
+}
