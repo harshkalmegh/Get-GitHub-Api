@@ -1,6 +1,7 @@
 {
   "name": "github-api-call",
   "version": "0.0.0",
+  "homepage": "https://harshkalmegh.github.io/Get-GitHub-Api/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
